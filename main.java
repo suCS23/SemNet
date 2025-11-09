@@ -1,33 +1,41 @@
 package code_garage.academic.assignments.cpcs331.SemNet;
 
-public class main{
+public class main {
     public static void main(String[] args) {
         semanticNet net = new semanticNet();
-        
-        net.addRelation("Cats", "are", "Mammals");
-        net.addRelation("Momo", "is a", "Cat");
-        net.addRelation("Momo", "owned by", "Su");
-        net.addRelation("Momo", "likes", "Fish");
-        net.addRelation("Momo", "likes", "Food");
-        net.addRelation("Momo", "has", "Fur");
-        net.addRelation("Fur", "color", "Black");
-        net.addRelation("Jojo", "is a", "Fish");
-        net.addRelation("Jojo", "owned by", "Su");
-        net.addRelation("Jojo", "is", "Blue");
-        net.addRelation("Jojo", "scared of", "Momo");
-        net.addRelation("Su", "is a", "Human");
 
-        System.out.println("\nThe whole semantic network\n");
+        System.out.println("\n=== Adding Relations ===");
+        net.addRelation("Cats", "are", "mammals");
+        net.addRelation("Momo", "is a", "cat");
+        net.addRelation("Momo", "is owned by", "Su");
+        net.addRelation("Momo", "likes", "fish");
+        net.addRelation("Momo", "likes", "food");
+        net.addRelation("Momo", "has", "fur");
+        net.addRelation("Momo", "fur is", "black");
+        net.addRelation("Jojo", "is a", "fish");
+        net.addRelation("Jojo", "is owned by", "Su");
+        net.addRelation("Jojo", "is", "blue");
+        net.addRelation("Jojo", "is scared of", "Momo");
+        net.addRelation("Su", "is a", "human");
+
+        System.out.println("\n=== Printing Network ===");
         net.printNetwork();
 
-        System.out.println("\nSearching for 'Su is a human' after deleting it\n");
-        net.delRelation("Su", "is a", "Human");
-        net.searchRelation("Su", "is a", "Human");
+        System.out.println("\n=== Searching Relations ===");
+        net.searchRelation("Momo", "likes", "fish");
+        net.searchRelation("Momo", null, null);
+        net.searchRelation("Jojo", "is scared of", "Momo");
 
-        System.out.println("\nAdding 'Su is a cat'\n");
-        net.addRelation("Su", "is a", "cat");
-        
-        System.out.println("\nThe whole semantic network\n");
+        System.out.println("\n=== Deleting a Relation ===");
+        net.delRelation("Momo", "likes", "food");
+        net.searchRelation("Momo", null, null);
+
+        System.out.println("\n=== Deleting a Node ===");
+        net.delNode("Jojo");
+        net.printNetwork();
+
+        System.out.println("\n=== Inferring Relations ===");
+        net.inferRelations();
         net.printNetwork();
     }
 }
